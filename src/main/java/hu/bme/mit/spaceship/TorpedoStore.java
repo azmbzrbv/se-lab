@@ -9,7 +9,7 @@ import java.util.Random;
 */
 public class TorpedoStore {
 
- private static Random generator = new Random();
+ private  Random generator;
 
 
   // rate of failing to fire torpedos [0.0, 1.0]
@@ -18,6 +18,7 @@ public class TorpedoStore {
   private int torpedoCount = 0;
 
   public TorpedoStore(int numberOfTorpedos){
+    generator = new Random();
     this.torpedoCount = numberOfTorpedos;
 
     // update failure rate if it was specified in an environment variable
@@ -30,6 +31,7 @@ public class TorpedoStore {
       }
     }
   }
+
 
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
@@ -45,7 +47,8 @@ public class TorpedoStore {
       // successful firing
       this.torpedoCount -= numberOfTorpedos;
       success = true;
-    } else {
+    } else
+     {
       // simulated failure
       success = false;
     }
@@ -60,4 +63,6 @@ public class TorpedoStore {
   public int getTorpedoCount() {
     return this.torpedoCount;
   }
+
+  //I have made some meaningfull changes
 }
